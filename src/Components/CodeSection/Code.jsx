@@ -18,6 +18,7 @@ export default function Code() {
 
     const blurEff = useRef();
     const codeData = useRef();
+    const codeTitle = useRef();
     const [viewEditor, setviewEditor] = useState(false);
     const [nameofLang, setnameofLang] = useState("");
     const [array, setarray] = useState([]);
@@ -43,7 +44,7 @@ export default function Code() {
         });
 
         return () => {
-            unsubscribe(); // Clean up the event listener when the component unmounts
+            unsubscribe();
         }
     }, []);
 
@@ -86,6 +87,7 @@ export default function Code() {
             "name": nameofLang,
             "codeInfo": codeData.current.value,
             "dateAndTime": getCurrentTimeAndDay(),
+            "codeTitle" : codeTitle.current.value || "No title"
         }
         let tempArray = [];
         const docRef = doc(db, "users", user.uid);
@@ -163,6 +165,7 @@ export default function Code() {
                         (<main style={{ marginTop: "3.3rem" }} className='in_codes'>
                             <h3>{nameofLang}</h3>
                             <h4>{dayandData}</h4>
+                            <input placeholder='Enter File Name' ref={codeTitle} type="text"/>
                             <textarea className='CodeTextArea' ref={codeData} placeholder="Enter you code here" cols="100" rows="23"></textarea>
                             <button onClick={handleSave}>Save</button>
                             &nbsp; &nbsp;
@@ -175,7 +178,7 @@ export default function Code() {
                                     loading ? (<div className="wheel"></div>)
                                         : (
                                             array?.map((e) => {
-                                                const { codeInfo, dateAndTime, name } = e;
+                                                const { codeInfo, dateAndTime, name,  codeTitle } = e;
                                                 return (
                                                     <>
                                                         <main className='firebaseCodes' key={dateAndTime}>
@@ -185,6 +188,8 @@ export default function Code() {
                                                             <br />
                                                             <b>{dateAndTime}</b>
                                                             <br />
+                                                            <br />
+                                                            <b>File Name : {codeTitle}</b>
                                                             <pre>
                                                                 <button className='copyButton' onClick={() => { handleCopy(codeInfo) }}>Copy</button>
                                                                 <code className='codeInfo' >{codeInfo}</code>
