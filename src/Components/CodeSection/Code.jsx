@@ -38,7 +38,7 @@ export default function Code() {
                     if (docSnap.exists()) {
                         setarray(docSnap.data().arrayOfObject || []);
                     }
-                setloading(false);
+                    setloading(false);
                 }
                 operate();
             }
@@ -112,7 +112,7 @@ export default function Code() {
         let newTemp = array.filter((e) => {
             return e.dateAndTime !== codetime;
         });
-        console.log("this is the newTemp -> "  , newTemp);
+        console.log("this is the newTemp -> ", newTemp);
         setarray(newTemp);
         let user = auth.currentUser;
         const docRef = doc(db, "users", user.uid);
@@ -145,28 +145,28 @@ export default function Code() {
                 </Helmet>
                 <nav className="code_nav" >
                     <ul>
-                        <li><img style={{margin:"0px"}} onClick={() => { window.location.href = "/" }} src={logo} alt="logo image" /></li>
+                        <li><img style={{ margin: "0px" }} onClick={() => { window.location.href = "/" }} src={logo} alt="logo image" /></li>
                     </ul>
                 </nav>
                 <section className='SecondSection' >
-                    <h3>~Welcome <b style={{color : "#ff2d2d"}} >{user?.displayName}</b> ~</h3>
+                    <h3>~Welcome <b style={{ color: "#ff2d2d" }} >{user?.displayName}</b> ~</h3>
                     <h2>~Select programming language~</h2>
                     <ul className='proGrammingLangs'>
-                        <li onClick={() => { proLang("HTML") }} ><i style={{color:"red"}} class="fa-brands fa-html5"></i></li>
-                        <li onClick={() => { proLang("CSS") }} ><i style={{color:"blue"}} class="fa-brands fa-css3-alt"></i></li>
-                        <li onClick={() => { proLang("Javascript") }} ><i  style={{color:"yellow"}}class="fa-brands fa-js"></i></li>
-                        <li style={{color:"blue"}} onClick={() => { proLang("C") }} ><small>C</small></li>
-                        <li style={{color:"blue"}} onClick={() => { proLang("C++") }} > <small>C++</small></li>
-                        <li onClick={() => { proLang("Reactjs") }} ><i  style={{color:"skyblue"}}class="fa-brands fa-react"></i></li>
-                        <li onClick={() => { proLang("Java") }} ><i style={{color:"orange"}} class="fa-brands fa-java"></i></li>
+                        <li onClick={() => { proLang("HTML") }} ><i style={{ color: "red" }} class="fa-brands fa-html5"></i></li>
+                        <li onClick={() => { proLang("CSS") }} ><i style={{ color: "blue" }} class="fa-brands fa-css3-alt"></i></li>
+                        <li onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow" }} class="fa-brands fa-js"></i></li>
+                        <li style={{ color: "blue" }} onClick={() => { proLang("C") }} ><small>C</small></li>
+                        <li style={{ color: "blue" }} onClick={() => { proLang("C++") }} > <small>C++</small></li>
+                        <li onClick={() => { proLang("Reactjs") }} ><i style={{ color: "skyblue" }} class="fa-brands fa-react"></i></li>
+                        <li onClick={() => { proLang("Java") }} ><i style={{ color: "orange" }} class="fa-brands fa-java"></i></li>
                     </ul>
                 </section>
                 {
                     viewEditor ?
-                        (<main style={{marginTop : "3.3rem"}} className='in_codes'>
+                        (<main style={{ marginTop: "3.3rem" }} className='in_codes'>
                             <h3>{nameofLang}</h3>
                             <h4>{dayandData}</h4>
-                            <textarea className='CodeTextArea'ref={codeData} placeholder="Enter you code here" cols="100" rows="23"></textarea>
+                            <textarea className='CodeTextArea' ref={codeData} placeholder="Enter you code here" cols="100" rows="23"></textarea>
                             <button onClick={handleSave}>Save</button>
                             &nbsp; &nbsp;
                             <button onClick={handleClose}>Close</button>
@@ -176,28 +176,28 @@ export default function Code() {
                             <main>
                                 {
                                     loading ? (<div className="wheel"></div>)
-                                    : (
-                                    array?.map((e) => {
-                                        const { codeInfo, dateAndTime, name } = e;
-                                        return (
-                                            <>
-                                                <main className='firebaseCodes' key={dateAndTime}>
-                                                <br />
-                                                    <b>{name}</b>
-                                                    <br />
-                                                    <br />
-                                                    <b>{dateAndTime}</b>
-                                                    <br />
-                                                    <pre>
-                                                        <button className='copyButton' onClick={() => { handleCopy(codeInfo) }}>Copy</button>
-                                                        <code className='codeInfo' >{codeInfo}</code>
-                                                    </pre>
-                                                    <button style={{ fontSize: "13px" }} onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
-                                                </main>
-                                            </>
+                                        : (
+                                            array?.map((e) => {
+                                                const { codeInfo, dateAndTime, name } = e;
+                                                return (
+                                                    <>
+                                                        <main className='firebaseCodes' key={dateAndTime}>
+                                                            <br />
+                                                            <b>{name}</b>
+                                                            <br />
+                                                            <br />
+                                                            <b>{dateAndTime}</b>
+                                                            <br />
+                                                            <pre>
+                                                                <button className='copyButton' onClick={() => { handleCopy(codeInfo) }}>Copy</button>
+                                                                <code className='codeInfo' >{codeInfo}</code>
+                                                            </pre>
+                                                            <button style={{ fontSize: "13px" }} onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
+                                                        </main>
+                                                    </>
+                                                )
+                                            })
                                         )
-                                    })
-                                    )
                                 }
                             </main>
                         )
