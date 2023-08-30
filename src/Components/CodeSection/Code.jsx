@@ -140,6 +140,9 @@ export default function Code() {
         <>
             <main ref={blurEff} className="align code_main">
                 <ToastContainer />
+                <Helmet>
+                    CodeScribe NIT-B Codes
+                </Helmet>
                 <nav className="code_nav" >
                     <ul>
                         <li><img style={{margin:"0px"}} onClick={() => { window.location.href = "/" }} src={logo} alt="logo image" /></li>
