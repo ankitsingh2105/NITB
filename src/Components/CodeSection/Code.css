@@ -84,6 +84,10 @@ pre {
     position: relative;
 }
 
+.custom-toast {
+    z-index:99999999999999999;
+}
+
 .copyButton {
     position: absolute;
     top: 0%;

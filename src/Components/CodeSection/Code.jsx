@@ -117,20 +117,21 @@ export default function Code() {
     }
     const handleCopy = async (textToCopy) => {
         try {
-            console.log("madarchod-> " , textToCopy);
             await navigator.clipboard.writeText(textToCopy);
             console.log('Text copied to clipboard');
-        } catch (error) {
+            toast.success("Code Copied to clipboard");
+        }
+        catch (error) {
             console.error('Error copying to clipboard:', error);
         }
     }
-    
+
     const dayandData = getCurrentTimeAndDay();
 
     return (
         <>
             <main ref={blurEff} className="align code_main">
-                <ToastContainer />
+                <ToastContainer className="custom-toast" />
                 <Helmet>
                     <title>CodeScribe NIT-B | CODES</title>
                 </Helmet>
