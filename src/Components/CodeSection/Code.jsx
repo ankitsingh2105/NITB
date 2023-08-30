@@ -119,7 +119,7 @@ export default function Code() {
         try {
             await navigator.clipboard.writeText(textToCopy);
             console.log('Text copied to clipboard');
-            toast.success("Code Copied to clipboard");
+            toast.success("Code Copied to clipboard" , {autoClose:1700});
         }
         catch (error) {
             console.error('Error copying to clipboard:', error);
