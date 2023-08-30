@@ -61,7 +61,7 @@
 
 .in_codes {
     position: fixed;
-    top: 4%;
+    top: 0%;
     backdrop-filter: blur(20px);
     padding: 0rem 0px 18rem 0rem;
 }
@@ -101,6 +101,12 @@ pre {
 
 pre {
     position: relative;
+}
+input{
+    border-radius: 12px;
+    border: none;
+    padding: 10px 5px;
+    box-shadow: 2px 3px 5px black;
 }
 .wheel{
     display: flex;

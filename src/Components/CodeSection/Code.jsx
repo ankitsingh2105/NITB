@@ -83,11 +83,15 @@ export default function Code() {
             toast.error("Something went wrong here");
             return;
         }
+        if(codeData.current.value === ""){
+            toast.error("Please enter some code")
+            return;
+        }
         let obj = {
             "name": nameofLang,
             "codeInfo": codeData.current.value,
             "dateAndTime": getCurrentTimeAndDay(),
-            "codeTitle" : codeTitle.current.value || "No title"
+            "codeTitle": codeTitle.current.value || "No title"
         }
         let tempArray = [];
         const docRef = doc(db, "users", user.uid);
@@ -121,7 +125,7 @@ export default function Code() {
         try {
             await navigator.clipboard.writeText(textToCopy);
             console.log('Text copied to clipboard');
-            toast.success("Code Copied to clipboard" , {autoClose:1700});
+            toast.success("Code Copied to clipboard", { autoClose: 1700 });
         }
         catch (error) {
             console.error('Error copying to clipboard:', error);
@@ -165,7 +169,7 @@ export default function Code() {
                         (<main style={{ marginTop: "3.3rem" }} className='in_codes'>
                             <h3>{nameofLang}</h3>
                             <h4>{dayandData}</h4>
-                            <input placeholder='Enter File Name' ref={codeTitle} type="text"/>
+                            <input placeholder='Enter File Name' ref={codeTitle} type="text" />
                             <textarea className='CodeTextArea' ref={codeData} placeholder="Enter you code here" cols="100" rows="23"></textarea>
                             <button onClick={handleSave}>Save</button>
                             &nbsp; &nbsp;
@@ -178,7 +182,7 @@ export default function Code() {
                                     loading ? (<div className="wheel"></div>)
                                         : (
                                             array?.map((e) => {
-                                                const { codeInfo, dateAndTime, name,  codeTitle } = e;
+                                                const { codeInfo, dateAndTime, name, codeTitle } = e;
                                                 return (
                                                     <>
                                                         <main className='firebaseCodes' key={dateAndTime}>
