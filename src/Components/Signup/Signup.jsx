@@ -22,12 +22,10 @@ export default function Signup() {
         const password = e.target.password.value;
 
         try {
-            const newUser = await createUserWithEmailAndPassword(auth, email, password);
             toast("Sign up successful", { autoClose: 1500 });
             await updateProfile(auth.currentUser, { displayName: name });
             window.location.href = "/codeSection";
         } catch (e) {
-            console.log("this is new shit-> ", name);
             toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1700 });
         }
     };

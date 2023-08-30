@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Services from "./Components/Services/Services"
 import Code from "./Components/CodeSection/Code";
 import Message from "./Components/Message/Message"
+import Footer from './Components/Footer/Footer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route element={<Signup />} path="signup" />
           <Route element={<Code />} path="codeSection" />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   )

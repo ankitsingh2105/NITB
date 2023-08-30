@@ -31,8 +31,6 @@ export default function Code() {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 async function operate() {
-                    console.log("this is the user inside the useEffect -> ", user);
-                    console.log("this is the useEffect section");
                     const docRef = doc(db, "users", user.uid);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
@@ -78,15 +76,12 @@ export default function Code() {
     }
 
     const handleSave = async () => {
-        console.log("we are ready to do wonder");
-        console.log("saving data");
+        
         let user = auth.currentUser;
-        console.log("this is the user-> ", user.uid);
         if (!user) {
             toast.error("Something went wrong here");
             return;
         }
-        console.log("this is some error-> ", codeData.current.value);
         let obj = {
             "name": nameofLang,
             "codeInfo": codeData.current.value,
@@ -108,11 +103,9 @@ export default function Code() {
     }
 
     const handleCodeDelete = async (codetime) => {
-        console.log("button is clicked for now");
         let newTemp = array.filter((e) => {
             return e.dateAndTime !== codetime;
         });
-        console.log("this is the newTemp -> ", newTemp);
         setarray(newTemp);
         let user = auth.currentUser;
         const docRef = doc(db, "users", user.uid);
@@ -129,7 +122,7 @@ export default function Code() {
                 toast.success("Code copied to clipboard", { autoClose: 1700 });
             })
             .catch((error) => {
-                console.error("Something went wrong", error, { autoClose: 1700 });
+                toast.error("Something went wrong", error, { autoClose: 1700 });
             });
     }
 
@@ -141,7 +134,7 @@ export default function Code() {
             <main ref={blurEff} className="align code_main">
                 <ToastContainer />
                 <Helmet>
-                    CodeScribe NIT-B Codes
+                    <title>CodeScribe NIT-B | CODES</title>
                 </Helmet>
                 <nav className="code_nav" >
                     <ul>
@@ -159,6 +152,12 @@ export default function Code() {
                         <li style={{ color: "blue" }} onClick={() => { proLang("C++") }} > <small>C++</small></li>
                         <li onClick={() => { proLang("Reactjs") }} ><i style={{ color: "skyblue" }} class="fa-brands fa-react"></i></li>
                         <li onClick={() => { proLang("Java") }} ><i style={{ color: "orange" }} class="fa-brands fa-java"></i></li>
+                        <li onClick={() => { proLang("Python") }} ><i style={{ color: "yellow" }} className="fa-brands fa-python"></i></li>
+                        <li onClick={() => { proLang("Swift") }} ><i style={{ color: "orange" }} className="fa-brands fa-swift"></i></li>
+                        <li onClick={() => { proLang("PHP") }} ><i style={{ color: "purple" }} className="fa-brands fa-php"></i></li>
+                        <li onClick={() => { proLang("Rust") }} ><i style={{ color: "gray" }} className="fa-brands fa-rust"></i></li>
+                        <li onClick={() => { proLang("Vue.js") }} ><i style={{ color: "green" }} className="fa-brands fa-vuejs"></i></li>
+                        <li onClick={() => { proLang("Angular") }} ><i style={{ color: "red" }} className="fa-brands fa-angular"></i></li>
                     </ul>
                 </section>
                 {
