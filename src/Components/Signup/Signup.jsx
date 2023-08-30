@@ -22,6 +22,7 @@ export default function Signup() {
         const password = e.target.password.value;
 
         try {
+            await createUserWithEmailAndPassword(auth, email, password);
             toast("Sign up successful", { autoClose: 1500 });
             await updateProfile(auth.currentUser, { displayName: name });
             window.location.href = "/codeSection";

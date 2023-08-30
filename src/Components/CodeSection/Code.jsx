@@ -76,7 +76,7 @@ export default function Code() {
     }
 
     const handleSave = async () => {
-        
+
         let user = auth.currentUser;
         if (!user) {
             toast.error("Something went wrong here");
@@ -115,18 +115,16 @@ export default function Code() {
             ...info, arrayOfObject: newTemp,
         });
     }
-
-    const handleCopy = (e) => {
-        navigator.clipboard.writeText(e)
-            .then(() => {
-                toast.success("Code copied to clipboard", { autoClose: 1700 });
-            })
-            .catch((error) => {
-                toast.error("Something went wrong", error, { autoClose: 1700 });
-            });
+    const handleCopy = async (textToCopy) => {
+        try {
+            console.log("madarchod-> " , textToCopy);
+            await navigator.clipboard.writeText(textToCopy);
+            console.log('Text copied to clipboard');
+        } catch (error) {
+            console.error('Error copying to clipboard:', error);
+        }
     }
-
-
+    
     const dayandData = getCurrentTimeAndDay();
 
     return (
@@ -153,7 +151,6 @@ export default function Code() {
                         <li onClick={() => { proLang("Reactjs") }} ><i style={{ color: "skyblue" }} class="fa-brands fa-react"></i></li>
                         <li onClick={() => { proLang("Java") }} ><i style={{ color: "orange" }} class="fa-brands fa-java"></i></li>
                         <li onClick={() => { proLang("Python") }} ><i style={{ color: "yellow" }} className="fa-brands fa-python"></i></li>
-                        <li onClick={() => { proLang("Swift") }} ><i style={{ color: "orange" }} className="fa-brands fa-swift"></i></li>
                         <li onClick={() => { proLang("PHP") }} ><i style={{ color: "purple" }} className="fa-brands fa-php"></i></li>
                         <li onClick={() => { proLang("Rust") }} ><i style={{ color: "gray" }} className="fa-brands fa-rust"></i></li>
                         <li onClick={() => { proLang("Vue.js") }} ><i style={{ color: "green" }} className="fa-brands fa-vuejs"></i></li>
@@ -201,7 +198,6 @@ export default function Code() {
                             </main>
                         )
                 }
-
 
             </main>
         </>
