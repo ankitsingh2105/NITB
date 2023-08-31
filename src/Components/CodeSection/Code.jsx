@@ -42,7 +42,6 @@ export default function Code() {
                 operate();
             }
         });
-
         return () => {
             unsubscribe();
         }
@@ -152,7 +151,7 @@ export default function Code() {
                     <ul className='proGrammingLangs'>
                         <li onClick={() => { proLang("HTML") }} ><i style={{ color: "red" }} class="fa-brands fa-html5"></i></li>
                         <li onClick={() => { proLang("CSS") }} ><i style={{ color: "blue" }} class="fa-brands fa-css3-alt"></i></li>
-                        <li onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow" }} class="fa-brands fa-js"></i></li>
+                        <li onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow", background:"black" }} class="fa-brands fa-js"></i></li>
                         <li style={{ color: "blue" }} onClick={() => { proLang("C") }} ><small>C</small></li>
                         <li style={{ color: "blue" }} onClick={() => { proLang("C++") }} > <small>C++</small></li>
                         <li onClick={() => { proLang("Reactjs") }} ><i style={{ color: "skyblue" }} class="fa-brands fa-react"></i></li>
