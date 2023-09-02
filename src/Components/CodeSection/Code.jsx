@@ -147,12 +147,12 @@ export default function Code() {
         editRef.current.value = codeInfo;
     }
 
-    const handleEditSave = async (date) => {
-        console.log("this should be right -> ", changedValue);
+    const handleEditSave = async (date, code) => {
         const updatedArray = array.map((e) => {
             if (e.dateAndTime === date) {
-                console.log("this is the date -> ", date);
-                return { ...e, codeInfo: changedValue };
+                if(changedValue!==""){
+                    return { ...e, codeInfo: changedValue };
+                }
             }
             return e;
         });
@@ -169,6 +169,7 @@ export default function Code() {
             ...info,
             arrayOfObject: updatedArray,
         });
+        displayEditWindow.current.style.display = "none";
     }
     
 
@@ -263,7 +264,7 @@ export default function Code() {
                     <h4>{obj.date}</h4>
                     <b>{obj.title}</b>
                     <textarea className='CodeTextArea' onChange={handleChanges} ref={editRef} cols="90" rows="23"></textarea>
-                    <button onClick={() => { handleEditSave(obj.date) }}>Save</button>
+                    <button onClick={() => { handleEditSave(obj.date , obj.code) }}>Save</button>
                     &nbsp; &nbsp;
                     <button onClick={handleEditClose}>Close</button>
                     <br />

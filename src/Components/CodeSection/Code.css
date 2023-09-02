@@ -30,10 +30,10 @@
 .code_nav ul {
     list-style: none;
     display: flex;
-    align-content: center;
     justify-content: center;
     padding: 0px;
     margin: 1px;
+    margin-left: 41px;
 }
 
 .SecondSection {
