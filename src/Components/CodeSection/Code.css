@@ -62,8 +62,10 @@
 .in_codes {
     position: fixed;
     top: 0%;
-    backdrop-filter: blur(20px);
+    /* backdrop-filter: blur(20px); */
     padding: 0rem 0px 18rem 0rem;
+    background-color: rgb(253, 253, 253);
+    z-index: 99999999;
 }
 
 pre {
@@ -71,6 +73,8 @@ pre {
     background-color: black;
     padding: 10px;
     color: rgb(166, 255, 0);
+    max-height: 400px;
+    overflow: auto;
 }
 
 .firebaseCodes :nth-child(1) {
@@ -82,6 +86,13 @@ pre {
     padding: 6px;
     margin: 3px 0px;
     position: relative;
+    min-width: 900px;
+}
+pre{
+    min-width: 900px;
+}
+.firebaseCodes button{
+    font-size: 14px;
 }
 
 .custom-toast {
@@ -129,6 +140,22 @@ pre {
         overflow: auto;
     }
 
+}
+@media screen and (max-width: 946px) {
+    .firebaseCodes {
+        min-width: 500px;
+    }
+    pre{
+        min-width: 500px;
+    }
+}
+@media screen and (max-width: 542px) {
+    .firebaseCodes {
+        min-width: 300px;
+    }
+    pre{
+        min-width: 300px;
+    }
 }
 
 @media screen and (max-width: 1090px) {

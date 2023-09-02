@@ -19,10 +19,16 @@ export default function Code() {
     const blurEff = useRef();
     const codeData = useRef();
     const codeTitle = useRef();
+    const editRef = useRef();
+    const displayEditWindow = useRef();
+
+    const [changedValue, setchangedValue] = useState("");
     const [viewEditor, setviewEditor] = useState(false);
     const [nameofLang, setnameofLang] = useState("");
     const [array, setarray] = useState([]);
     const [loading, setloading] = useState(true);
+    const [editWindow, seteditWindow] = useState(false);
+    const [obj, setobj] = useState("");
 
     const proLang = async (e) => {
         setviewEditor(true);
@@ -82,13 +88,13 @@ export default function Code() {
             toast.error("Something went wrong here");
             return;
         }
-        if(codeData.current.value === ""){
+        if (codeData.current.value === "") {
             toast.error("Please enter some code")
             return;
         }
         let obj = {
             "name": nameofLang,
-            "codeInfo": codeData.current.value,
+            "codeInfo": codeData.current.value || "No Code",
             "dateAndTime": getCurrentTimeAndDay(),
             "codeTitle": codeTitle.current.value || "No title"
         }
@@ -123,12 +129,55 @@ export default function Code() {
     const handleCopy = async (textToCopy) => {
         try {
             await navigator.clipboard.writeText(textToCopy);
-            console.log('Text copied to clipboard');
             toast.success("Code Copied to clipboard", { autoClose: 1700 });
         }
         catch (error) {
             console.error('Error copying to clipboard:', error);
         }
+    }
+
+    const handleEdits = (dateAndTime, codeInfo, name, codeTitle) => {
+        setobj((e) => ({
+            date: dateAndTime,
+            code: codeInfo,
+            name: name,
+            title: codeTitle
+        }))
+        displayEditWindow.current.style.display = "block";
+        editRef.current.value = codeInfo;
+    }
+
+    const handleEditSave = async (date) => {
+        console.log("this should be right -> ", changedValue);
+        const updatedArray = array.map((e) => {
+            if (e.dateAndTime === date) {
+                console.log("this is the date -> ", date);
+                return { ...e, codeInfo: changedValue };
+            }
+            return e;
+        });
+        console.log("updated:\n", updatedArray);
+        setarray(updatedArray);
+        console.log("this is the updated array -> ", updatedArray);
+    
+        let user = auth.currentUser;
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
+    
+        setDoc(docRef, {
+            ...info,
+            arrayOfObject: updatedArray,
+        });
+    }
+    
+
+    const handleEditClose = () => {
+        displayEditWindow.current.style.display = "none";
+    }
+
+    const handleChanges = (e)=>{
+        setchangedValue(e.target.value);
     }
 
     const dayandData = getCurrentTimeAndDay();
@@ -151,7 +200,7 @@ export default function Code() {
                     <ul className='proGrammingLangs'>
                         <li onClick={() => { proLang("HTML") }} ><i style={{ color: "red" }} class="fa-brands fa-html5"></i></li>
                         <li onClick={() => { proLang("CSS") }} ><i style={{ color: "blue" }} class="fa-brands fa-css3-alt"></i></li>
-                        <li onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow", background:"black" }} class="fa-brands fa-js"></i></li>
+                        <li onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow", background: "black" }} class="fa-brands fa-js"></i></li>
                         <li style={{ color: "blue" }} onClick={() => { proLang("C") }} ><small>C</small></li>
                         <li style={{ color: "blue" }} onClick={() => { proLang("C++") }} > <small>C++</small></li>
                         <li onClick={() => { proLang("Reactjs") }} ><i style={{ color: "skyblue" }} class="fa-brands fa-react"></i></li>
@@ -198,6 +247,8 @@ export default function Code() {
                                                                 <code className='codeInfo' >{codeInfo}</code>
                                                             </pre>
                                                             <button style={{ fontSize: "13px" }} onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
+                                                            &nbsp; &nbsp;
+                                                            <button onClick={() => { handleEdits(dateAndTime, codeInfo, name, codeTitle) }} >Edit</button>
                                                         </main>
                                                     </>
                                                 )
@@ -207,6 +258,16 @@ export default function Code() {
                             </main>
                         )
                 }
+                <main style={{ marginTop: "3.3rem", display: "none" }} ref={displayEditWindow} className='in_codes'>
+                    <h3>{obj.name}</h3>
+                    <h4>{obj.date}</h4>
+                    <b>{obj.title}</b>
+                    <textarea className='CodeTextArea' onChange={handleChanges} ref={editRef} cols="90" rows="23"></textarea>
+                    <button onClick={() => { handleEditSave(obj.date) }}>Save</button>
+                    &nbsp; &nbsp;
+                    <button onClick={handleEditClose}>Close</button>
+                    <br />
+                </main>
 
             </main>
         </>
