@@ -27,7 +27,6 @@ export default function Code() {
     const [nameofLang, setnameofLang] = useState("");
     const [array, setarray] = useState([]);
     const [loading, setloading] = useState(true);
-    const [editWindow, seteditWindow] = useState(false);
     const [obj, setobj] = useState("");
 
     const proLang = async (e) => {
@@ -192,7 +191,7 @@ export default function Code() {
                 </Helmet>
                 <nav className="code_nav" >
                     <ul>
-                        <li><img style={{ margin: "0px" }} onClick={() => { window.location.href = "/" }} src={logo} alt="logo image" /></li>
+                        <img style={{ margin: "0px" }} onClick={() => { window.location.href = "/" }} src={logo} alt="logo image" />
                     </ul>
                 </nav>
                 <section className='SecondSection' >

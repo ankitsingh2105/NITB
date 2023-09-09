@@ -1,7 +1,10 @@
 .code_main {
     font-family: var(--main-font);
 }
-
+pre::-webkit-scrollbar-thumb-horizontal {
+    background-color: var(--main-color);
+    border-radius: 89px;
+}
 .proGrammingLangs {
     display: grid;
     grid-template-columns: repeat(5, 8rem);
@@ -33,7 +36,7 @@
     justify-content: center;
     padding: 0px;
     margin: 1px;
-    margin-left: 41px;
+    /* margin-left: 41px; */
 }
 
 .SecondSection {
@@ -62,7 +65,6 @@
 .in_codes {
     position: fixed;
     top: 0%;
-    /* backdrop-filter: blur(20px); */
     padding: 0rem 0px 18rem 0rem;
     background-color: rgb(253, 253, 253);
     z-index: 99999999;
@@ -86,10 +88,10 @@ pre {
     padding: 6px;
     margin: 3px 0px;
     position: relative;
-    min-width: 900px;
+    /* min-width: 900px; */
 }
 pre{
-    min-width: 900px;
+    max-width: 1100px;
 }
 .firebaseCodes button{
     font-size: 14px;
@@ -134,27 +136,37 @@ pre {
     100% { transform: rotate(360deg); }
   }
 
-@media screen and (max-width: 1090px) {
+@media screen and (max-width: 1190px) {
     pre {
-        width: 350px;
-        overflow: auto;
-    }
-
-}
-@media screen and (max-width: 946px) {
-    .firebaseCodes {
-        min-width: 500px;
-    }
-    pre{
-        min-width: 500px;
+        max-width: 850px;
     }
 }
-@media screen and (max-width: 542px) {
-    .firebaseCodes {
-        min-width: 300px;
-    }
+@media screen and (max-width: 900px) {
     pre{
-        min-width: 300px;
+        max-width: 700px;
+    }
+}
+@media screen and (max-width: 740px) {
+    pre{
+        max-width: 500px;
+    }
+}
+@media screen and (max-width: 550px) {
+    pre{
+        max-width: 400px;
+    }
+}
+@media screen and (max-width: 450px) {
+    pre{
+        max-width: 350px;
+    }
+}
+@media screen and (max-width: 390px) {
+    pre{
+        max-width: 330px;
+    }
+    .proGrammingLangs {
+        grid-template-columns: repeat(3, 6.5rem);
     }
 }
 
