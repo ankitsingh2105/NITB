@@ -75,8 +75,9 @@ pre {
     background-color: black;
     padding: 10px;
     color: rgb(166, 255, 0);
-    max-height: 400px;
+    max-height: 500px;
     overflow: auto;
+    min-width: 1000px;
 }
 
 .firebaseCodes :nth-child(1) {
@@ -139,34 +140,40 @@ pre {
 @media screen and (max-width: 1190px) {
     pre {
         max-width: 850px;
+        min-width: 850px;
     }
 }
 @media screen and (max-width: 900px) {
     pre{
         max-width: 700px;
+        min-width: 700px;
     }
 }
 @media screen and (max-width: 740px) {
     pre{
         max-width: 500px;
+        min-width: 500px;
     }
 }
 @media screen and (max-width: 550px) {
     pre{
         max-width: 400px;
+        min-width: 400px;
     }
 }
 @media screen and (max-width: 450px) {
     pre{
         max-width: 350px;
+        min-width: 350px;
     }
 }
 @media screen and (max-width: 390px) {
     pre{
-        max-width: 330px;
+        max-width: 320px;
+        min-width: 320px;
     }
     .proGrammingLangs {
-        grid-template-columns: repeat(3, 6.5rem);
+        grid-template-columns: repeat(3, 6.3rem);
     }
 }
 
