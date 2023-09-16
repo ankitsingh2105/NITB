@@ -20,7 +20,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    toast("Checking Credentials", { autoClose: 1500 });
+    toast("Checking Credentials", { autoClose: 3000 });
     const email = e.target.email.value;
     const password = e.target.password.value;
     try {
