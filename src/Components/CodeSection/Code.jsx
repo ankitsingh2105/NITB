@@ -233,13 +233,13 @@ export default function Code() {
                                 {
                                     loading ? (<div className="wheel"></div>)
                                         : (
-                                            array?.map((e) => {
+                                            array?.map((e , index) => {
                                                 const { codeInfo, dateAndTime, name, codeTitle } = e;
                                                 return (
                                                     <>
                                                         <main className='firebaseCodes' key={dateAndTime}>
                                                             <br />
-                                                            <b>{name}</b>
+                                                            <b>{index+1}.{name}</b>
                                                             <br />
                                                             <br />
                                                             <b>{dateAndTime}</b>
