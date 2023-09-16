@@ -198,27 +198,28 @@ export default function Code() {
                     <h3>~Welcome <b style={{ color: "#ff2d2d" }} >{user?.displayName}</b> ~</h3>
                     <h2>~Select programming language~</h2>
                     <ul className='proGrammingLangs'>
-                        <li onClick={() => { proLang("HTML") }} ><i style={{ color: "red" }} class="fa-brands fa-html5"></i></li>
-                        <li onClick={() => { proLang("CSS") }} ><i style={{ color: "blue" }} class="fa-brands fa-css3-alt"></i></li>
-                        <li onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow", background: "black" }} class="fa-brands fa-js"></i></li>
+                        <li style={{background :"red"}} onClick={() => { proLang("HTML") }} ><i style={{ color: "white" }} class="fa-brands fa-html5"></i></li>
+                        <li style={{background :"blue"}} onClick={() => { proLang("CSS") }} ><i style={{ color: "white" }} class="fa-brands fa-css3-alt"></i></li>
+                        <li style={{background :"yellow"}} onClick={() => { proLang("Javascript") }} ><i style={{ color: "yellow", background: "black" }} class="fa-brands fa-js"></i></li>
+                        <li style={{background :"blue"}} onClick={() => { proLang("Python") }} ><i style={{ color: "yellow" }} className="fa-brands fa-python"></i></li>
                         <li style={{ color: "blue" }} onClick={() => { proLang("C") }} ><small>C</small></li>
+                        <li style={{background :"#1abdff"}} onClick={() => { proLang("Reactjs") }} ><i style={{ color: "white" }} class="fa-brands fa-react"></i></li>
+                        <li style={{background :"orange"}} onClick={() => { proLang("Java") }} ><i style={{ color: "white" }} class="fa-brands fa-java"></i></li>
+                        <li style={{background :"purple"}} onClick={() => { proLang("PHP") }} ><i style={{ color: "white" }} className="fa-brands fa-php"></i></li>
+                        <li style={{background :"gray"}} onClick={() => { proLang("Rust") }} ><i style={{ color: "white" }} className="fa-brands fa-rust"></i></li>
+                        <li style={{background :"green"}} onClick={() => { proLang("Vue.js") }} ><i style={{ color: "white" }} className="fa-brands fa-vuejs"></i></li>
+                        <li style={{background :"red"}} onClick={() => { proLang("Angular") }} ><i style={{ color: "white" }} className="fa-brands fa-angular"></i></li>
                         <li style={{ color: "blue" }} onClick={() => { proLang("C++") }} > <small>C++</small></li>
-                        <li onClick={() => { proLang("Reactjs") }} ><i style={{ color: "skyblue" }} class="fa-brands fa-react"></i></li>
-                        <li onClick={() => { proLang("Java") }} ><i style={{ color: "orange" }} class="fa-brands fa-java"></i></li>
-                        <li onClick={() => { proLang("Python") }} ><i style={{ color: "yellow" }} className="fa-brands fa-python"></i></li>
-                        <li onClick={() => { proLang("PHP") }} ><i style={{ color: "purple" }} className="fa-brands fa-php"></i></li>
-                        <li onClick={() => { proLang("Rust") }} ><i style={{ color: "gray" }} className="fa-brands fa-rust"></i></li>
-                        <li onClick={() => { proLang("Vue.js") }} ><i style={{ color: "green" }} className="fa-brands fa-vuejs"></i></li>
-                        <li onClick={() => { proLang("Angular") }} ><i style={{ color: "red" }} className="fa-brands fa-angular"></i></li>
                     </ul>
                 </section>
                 {
                     viewEditor ?
-                        (<main style={{ marginTop: "3.3rem" }} className='in_codes'>
+                        (<main style={{ marginTop: "4rem" }} className='in_codes'>
                             <h3>{nameofLang}</h3>
-                            <h4>{dayandData}</h4>
+                            <h3>{dayandData}</h3>
+                            <br />
                             <input placeholder='Enter File Name' ref={codeTitle} type="text" />
-                            <textarea className='CodeTextArea' ref={codeData} placeholder="Enter you code here" cols="100" rows="23"></textarea>
+                            <textarea className='CodeTextArea' ref={codeData} placeholder="Enter you code here" cols="100" rows="20"></textarea>
                             <br />
                             <section>
                                 <button onClick={handleSave}>Save</button>
@@ -249,9 +250,12 @@ export default function Code() {
                                                                 <button className='copyButton' onClick={() => { handleCopy(codeInfo) }}>Copy</button>
                                                                 <code className='codeInfo' >{codeInfo}</code>
                                                             </pre>
-                                                            <button style={{ fontSize: "13px" }} onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
+                                                            <section>
+                                                            <button onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
                                                             &nbsp; &nbsp;
                                                             <button onClick={() => { handleEdits(dateAndTime, codeInfo, name, codeTitle) }} >Edit</button>
+                                                            </section>
+                                                            <br />
                                                         </main>
                                                     </>
                                                 )
@@ -267,6 +271,7 @@ export default function Code() {
                     <b>{obj.title}</b>
                     <textarea className='CodeTextArea' onChange={handleChanges} ref={editRef} cols="90" rows="23"></textarea>
                     <button onClick={() => { handleEditSave(obj.date, obj.code) }}>Save</button>
+                    &nbsp; &nbsp;
                     <button onClick={handleEditClose}>Close</button>
                     <br />
                 </main>

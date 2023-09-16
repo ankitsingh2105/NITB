@@ -44,7 +44,7 @@ pre::-webkit-scrollbar-thumb-horizontal {
 }
 
 .SecondSection {
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 
 .code-display {
@@ -71,12 +71,7 @@ pre::-webkit-scrollbar-thumb-horizontal {
     top: 0%;
     background-color: rgb(253, 253, 253);
     z-index: 99999999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding-bottom: 7rem;
-    padding-right: 2px;
+    padding-bottom: 20rem;
 }
 .alignCodes{
     display: flex;
@@ -101,10 +96,9 @@ pre {
 
 .firebaseCodes {
     border: 1px solid black;
-    padding: 6px;
-    margin: 3px 0px;
+    padding: 6px;margin-bottom: 1rem;
     position: relative;
-    /* min-width: 900px; */
+    border-radius: 10px;
 }
 pre{
     max-width: 1100px;
@@ -136,6 +130,9 @@ pre {
     border: none;
     padding: 10px 5px;
     box-shadow: 2px 3px 5px black;
+}
+.in_codes h3{
+    margin-bottom: -3px;
 }
 .wheel{
     display: flex;
