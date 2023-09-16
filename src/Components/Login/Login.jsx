@@ -33,17 +33,28 @@ export default function Login() {
       toast.error("Invalid Credentials", { autoClose: 1500 });
     }
   }
+  const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
 
   const forgotPass = async () => {
-    console.log("this is happening");
-    await sendPasswordResetEmail(auth, passEmail);
-    try{
-      toast.success("Email Sent please check you mail account" , {autoClose : 1500});
+    let check = isValidEmail(passEmail);
+    if (!passEmail) {
+      toast.error("Please enter an email address", { autoClose: 1500 });
+      return;
+    } else if (!check) {
+      toast.error("Please enter a valid email address", { autoClose: 1500 });
+      return;
     }
-    catch{
-      toast.error("Something went wrong" , {autoClose : 1500});
-    }
+    toast.success("Processing", { autoClose: 2000 });
 
+    try {
+      await sendPasswordResetEmail(auth, passEmail);
+      toast.success("Email sent. Please check your email account.", { autoClose: 1500 });
+    } catch (error) {
+      toast.error("Email don't exist", { autoClose: 1500 });
+    }
   }
 
   const handleEmail = (e)=>{
