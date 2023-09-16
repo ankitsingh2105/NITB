@@ -1,5 +1,9 @@
 .code_main {
     font-family: var(--main-font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 pre::-webkit-scrollbar-thumb-horizontal {
     background-color: var(--main-color);
@@ -65,11 +69,22 @@ pre::-webkit-scrollbar-thumb-horizontal {
 .in_codes {
     position: fixed;
     top: 0%;
-    padding: 0rem 0px 18rem 0rem;
     background-color: rgb(253, 253, 253);
     z-index: 99999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 7rem;
+    padding-right: 2px;
 }
-
+.alignCodes{
+    display: flex;
+    flex-direction: column;
+}
+.options{
+    display: flex;
+}
 pre {
     text-align: left;
     background-color: black;
@@ -144,31 +159,31 @@ pre {
     }
 }
 @media screen and (max-width: 900px) {
-    pre{
+    pre , .CodeTextArea{
         max-width: 700px;
         min-width: 700px;
     }
 }
 @media screen and (max-width: 740px) {
-    pre{
+    pre , .CodeTextArea{
         max-width: 500px;
         min-width: 500px;
     }
 }
 @media screen and (max-width: 550px) {
-    pre{
+    pre , .CodeTextArea{
         max-width: 400px;
         min-width: 400px;
     }
 }
 @media screen and (max-width: 450px) {
-    pre{
+    pre , .CodeTextArea{
         max-width: 350px;
         min-width: 350px;
     }
 }
 @media screen and (max-width: 390px) {
-    pre{
+    pre , .CodeTextArea{
         max-width: 320px;
         min-width: 320px;
     }
@@ -180,7 +195,7 @@ pre {
 @media screen and (max-width: 1090px) {
     .proGrammingLangs {
         display: grid;
-        grid-template-columns: repeat(3, 8rem);
+        grid-template-columns: repeat(3, 7.5rem);
         padding: 0px;
     }
     .SecondSection ul li {

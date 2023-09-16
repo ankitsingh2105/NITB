@@ -79,10 +79,11 @@ export default function Login() {
         <input placeholder='Password' type="password" name="password" />
         <button>Login</button>
       </form>
+      <br />
+      <button onClick={ ()=> {forgotPass()}} >Forgot Password?</button>
       <h2>Don't have an account? Sign Up here</h2>
       <button onClick={() => { window.location.href = `/signup` }} >Sign Up</button>
       <br />
-      <button onClick={ ()=> {forgotPass()}} >Forgot Password?</button>
       <br />
       <br />
     </main>

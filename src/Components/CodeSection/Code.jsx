@@ -149,7 +149,7 @@ export default function Code() {
     const handleEditSave = async (date, code) => {
         const updatedArray = array.map((e) => {
             if (e.dateAndTime === date) {
-                if(changedValue!==""){
+                if (changedValue !== "") {
                     return { ...e, codeInfo: changedValue };
                 }
             }
@@ -158,25 +158,25 @@ export default function Code() {
         console.log("updated:\n", updatedArray);
         setarray(updatedArray);
         console.log("this is the updated array -> ", updatedArray);
-    
+
         let user = auth.currentUser;
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         const info = docSnap.data();
-    
+
         setDoc(docRef, {
             ...info,
             arrayOfObject: updatedArray,
         });
         displayEditWindow.current.style.display = "none";
     }
-    
+
 
     const handleEditClose = () => {
         displayEditWindow.current.style.display = "none";
     }
 
-    const handleChanges = (e)=>{
+    const handleChanges = (e) => {
         setchangedValue(e.target.value);
     }
 
@@ -219,9 +219,12 @@ export default function Code() {
                             <h4>{dayandData}</h4>
                             <input placeholder='Enter File Name' ref={codeTitle} type="text" />
                             <textarea className='CodeTextArea' ref={codeData} placeholder="Enter you code here" cols="100" rows="23"></textarea>
-                            <button onClick={handleSave}>Save</button>
-                            &nbsp; &nbsp;
-                            <button onClick={handleClose}>Close</button>
+                            <br />
+                            <section>
+                                <button onClick={handleSave}>Save</button>
+                                &nbsp; &nbsp;
+                                <button onClick={handleClose}>Close</button>
+                            </section>
                             <br />
                         </main>)
                         : (
@@ -263,8 +266,7 @@ export default function Code() {
                     <h4>{obj.date}</h4>
                     <b>{obj.title}</b>
                     <textarea className='CodeTextArea' onChange={handleChanges} ref={editRef} cols="90" rows="23"></textarea>
-                    <button onClick={() => { handleEditSave(obj.date , obj.code) }}>Save</button>
-                    &nbsp; &nbsp;
+                    <button onClick={() => { handleEditSave(obj.date, obj.code) }}>Save</button>
                     <button onClick={handleEditClose}>Close</button>
                     <br />
                 </main>
