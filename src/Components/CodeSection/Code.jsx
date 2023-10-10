@@ -21,6 +21,7 @@ export default function Code() {
     const codeTitle = useRef();
     const editRef = useRef();
     const displayEditWindow = useRef();
+    const hidePre = useRef();
 
     const [changedValue, setchangedValue] = useState("");
     const [viewEditor, setviewEditor] = useState(false);
@@ -89,6 +90,10 @@ export default function Code() {
         }
         if (codeData.current.value === "") {
             toast.error("Please enter some code")
+            return;
+        }
+        if(codeTitle.current.value == ""){
+            toast.error("Please enter the title");
             return;
         }
         let obj = {
@@ -180,6 +185,12 @@ export default function Code() {
         setchangedValue(e.target.value);
     }
 
+    const handleHide = () =>{
+        console.log("we are hiding the code ");
+        // sethide("Show");
+        hidePre.current.style.display = "none";
+    }
+
     const dayandData = getCurrentTimeAndDay();
 
     return (
@@ -246,14 +257,17 @@ export default function Code() {
                                                             <br />
                                                             <br />
                                                             <b>File Name : {codeTitle}</b>
-                                                            <pre>
+                                                            <pre ref={hidePre} >
                                                                 <button className='copyButton' onClick={() => { handleCopy(codeInfo) }}>Copy</button>
                                                                 <code className='codeInfo' >{codeInfo}</code>
                                                             </pre>
                                                             <section>
+                                                            <br />
                                                             <button onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
                                                             &nbsp; &nbsp;
                                                             <button onClick={() => { handleEdits(dateAndTime, codeInfo, name, codeTitle) }} >Edit</button>
+                                                            &nbsp; &nbsp;
+                                                            <button onClick={handleHide}>Hide</button>
                                                             </section>
                                                             <br />
                                                         </main>
