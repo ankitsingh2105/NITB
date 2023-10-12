@@ -266,8 +266,8 @@ export default function Code() {
                                                             <button onClick={() => { handleCodeDelete(dateAndTime) }}>Delete</button>
                                                             &nbsp; &nbsp;
                                                             <button onClick={() => { handleEdits(dateAndTime, codeInfo, name, codeTitle) }} >Edit</button>
-                                                            &nbsp; &nbsp;
-                                                            <button onClick={handleHide}>Hide</button>
+                                                            {/* &nbsp; &nbsp;
+                                                            <button onClick={handleHide}>Hide</button> */}
                                                             </section>
                                                             <br />
                                                         </main>
